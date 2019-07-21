@@ -1,16 +1,20 @@
 extends KinematicBody2D
 
-const V_MAX = 150
+const V_MAX = 300
 const RA_MAX = 180
 const ACC = 0.5
 const DEC = 0.7
 
 var v
 var ra
+var wall_hit
+var damage = 0
 
 func _ready():
 	v = 0
 	ra = 0
+	wall_hit = false
+	damage = 0
 	
 func _physics_process(delta):
 	if Input.is_action_pressed("ui_up"):
@@ -41,7 +45,15 @@ func _physics_process(delta):
 		var dir = Vector2(0, -1).rotated(rotation)
 		var motion = dir.normalized() * v
 		move_and_slide(motion, Vector2(0, 0))
-		#position += dir * v * delta
+		var hit = get_slide_count() > 0
+		if hit and not wall_hit:
+			wall_hit = true
+			if v > 150:
+				damage += v / 100
+				v = 0
+				print("damage: " + str(damage))
+		elif not hit and wall_hit:
+			wall_hit = false
 	else:
 		ra = 0
 		
