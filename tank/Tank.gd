@@ -39,7 +39,9 @@ func _process(delta):
 				
 		rotation_degrees += ra * delta
 		var dir = Vector2(0, -1).rotated(rotation)
-		position += dir * v * delta
+		var motion = dir.normalized() * v
+		move_and_slide(motion, Vector2(0, 0))
+		#position += dir * v * delta
 	else:
 		ra = 0
 		
