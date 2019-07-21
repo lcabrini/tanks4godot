@@ -12,7 +12,7 @@ func _ready():
 	v = 0
 	ra = 0
 	
-func _process(delta):
+func _physics_process(delta):
 	if Input.is_action_pressed("ui_up"):
 		v += ACC
 		if v > V_MAX:
