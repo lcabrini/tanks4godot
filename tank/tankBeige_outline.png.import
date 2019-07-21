@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/barrelBeige_outline.png-2c726fedb7236ceb8c97e40b66b00581.stex"
+path="res://.import/tankBeige_outline.png-edaf887c976e1882d9807288c0458c3b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/barrelBeige_outline.png"
-dest_files=[ "res://.import/barrelBeige_outline.png-2c726fedb7236ceb8c97e40b66b00581.stex" ]
+source_file="res://tank/tankBeige_outline.png"
+dest_files=[ "res://.import/tankBeige_outline.png-edaf887c976e1882d9807288c0458c3b.stex" ]
 
 [params]
 
