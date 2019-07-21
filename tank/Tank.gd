@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 const V_MAX = 150
 const RA_MAX = 180
