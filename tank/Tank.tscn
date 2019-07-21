@@ -24,3 +24,6 @@ script = ExtResource( 3 )
 [node name="Sprite" type="Sprite" parent="Barrel"]
 position = Vector2( 0, -20 )
 texture = ExtResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
