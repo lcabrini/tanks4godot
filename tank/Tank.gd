@@ -27,6 +27,8 @@ func _physics_process(delta):
 			v = 0
 			
 	if v > 0:
+		if not $EngineSound.is_playing():
+			$EngineSound.play()
 		if Input.is_action_pressed("ui_left"):
 			ra -= 1
 			if ra < -RA_MAX:
@@ -56,4 +58,6 @@ func _physics_process(delta):
 			wall_hit = false
 	else:
 		ra = 0
+		if $EngineSound.is_playing():
+			$EngineSound.stop()
 		

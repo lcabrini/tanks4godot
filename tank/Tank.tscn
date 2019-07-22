@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://tank/Tank.gd" type="Script" id=1]
 [ext_resource path="res://tank/tankBeige_outline.png" type="Texture" id=2]
 [ext_resource path="res://tank/Barrel.gd" type="Script" id=3]
 [ext_resource path="res://tank/barrelBeige_outline.png" type="Texture" id=4]
+[ext_resource path="res://tank/tank.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 40 )
@@ -27,3 +28,6 @@ texture = ExtResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="EngineSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
