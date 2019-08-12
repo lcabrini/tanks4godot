@@ -62,4 +62,5 @@ margin_right = 423.42
 margin_bottom = 30.3406
 text = "Your name:"
 [connection signal="pressed" from="Host" to="." method="_on_Host_pressed"]
+[connection signal="pressed" from="Join" to="." method="_on_Join_pressed"]
 [connection signal="text_changed" from="Control/Nickname" to="." method="_on_Nickname_text_changed"]
