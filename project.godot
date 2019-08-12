@@ -20,7 +20,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-network="*res://scripts/network.gd"
+Network="*res://scripts/Network.gd"
 
 [display]
 
