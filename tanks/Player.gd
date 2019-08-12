@@ -8,6 +8,10 @@ slave var slave_rotation_key = RotationKey.NONE
 slave var slave_position = Vector2()
 slave var slave_turret_direction = Vector2()
 
+func _ready():
+	if is_network_master():
+		$PlayerCamera.make_current()
+
 func control(delta):
 	pass
 	
@@ -36,7 +40,7 @@ func _physics_process(delta):
 		position = slave_position
 	
 	if get_tree().is_network_server():
-		network.update_position(int(name), position)
+		Network.update_position(int(name), position)
 		
 func _move(movement_key, rotation_key, turret_direction, delta):
 	$Turret.look_at(turret_direction)
