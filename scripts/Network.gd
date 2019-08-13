@@ -7,7 +7,10 @@ const MAX_PLAYERS = 4
 var players = {}
 var player = {nickname='', position=Vector2(360, 100)}
 
+signal player_count_changed()
+
 func _ready():
+	get_tree().connect('connected_to_server', self, '_player_connected')
 	get_tree().connect('network_peer_disconnected', self, '_player_disconnected')
 	
 func create_server(nickname):
@@ -30,6 +33,7 @@ func _connected_to_server():
 	
 func _player_connected(id):
 	print("Player connected: " + str(id))
+	emit_signal("player_count_changed")
 	
 func _player_disconnected(id):
 	print("Player disconnected: " + str(id))
