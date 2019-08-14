@@ -4,9 +4,9 @@ const DEFAULT_PORT = 14000
 const MAX_PEERS = 5
 
 signal server_created()
-signal player_list_changed()
 signal connection_succeeded()
 signal connection_failed()
+signal player_list_changed()
 
 var nickname = ''
 var players = {}
@@ -19,6 +19,7 @@ func _ready():
 	get_tree().connect('server_disconnected', self, '_server_disconnected')
 
 func host_game(new_nickname):
+	print("in host_game")
 	nickname = new_nickname
 	var host = NetworkedMultiplayerENet.new()
 	host.create_server(DEFAULT_PORT, MAX_PEERS)
@@ -26,12 +27,14 @@ func host_game(new_nickname):
 	emit_signal("server_created")
 	
 func join_game(ip, new_nickname):
+	print("in join_game")
 	nickname = new_nickname
 	var host = NetworkedMultiplayerENet.new()
 	host.create_client(ip, DEFAULT_PORT)
 	get_tree().set_network_peer(host) 
 	
 remote func register_player(nickname):
+	print("in register player")
 	var id = get_tree().get_rpc_sender_id()
 	players[id] = nickname
 	emit_signal("player_list_changed")

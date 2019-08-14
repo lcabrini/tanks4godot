@@ -3,15 +3,14 @@
 [ext_resource path="res://lobby/lobby.gd" type="Script" id=1]
 [ext_resource path="res://assets/zorque.regular.ttf" type="DynamicFontData" id=2]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 128
 font_data = ExtResource( 2 )
 
-[node name="Lobby" type="Node2D"]
+[node name="lobby" type="Control"]
 script = ExtResource( 1 )
 
-[node name="Title" type="Label" parent="."]
+[node name="title" type="Label" parent="."]
 margin_top = 88.0
 margin_right = 1020.0
 margin_bottom = 242.0
@@ -20,7 +19,7 @@ text = "Tanks 4 Godot"
 align = 1
 valign = 1
 
-[node name="Host" type="Button" parent="."]
+[node name="host" type="Button" parent="."]
 margin_left = 16.0968
 margin_top = 538.392
 margin_right = 112.097
@@ -28,15 +27,14 @@ margin_bottom = 586.392
 disabled = true
 text = "Host Game"
 
-[node name="Participants" type="Label" parent="."]
-margin_left = -1.0
-margin_top = 253.0
-margin_right = 1021.0
-margin_bottom = 322.0
+[node name="status" type="Label" parent="."]
+margin_top = 250.0
+margin_right = 1022.0
+margin_bottom = 290.0
 text = "Not connected to any server. Host a game or join an existing game."
 align = 1
 
-[node name="Join" type="Button" parent="."]
+[node name="join" type="Button" parent="."]
 margin_left = 901.899
 margin_top = 530.942
 margin_right = 997.899
@@ -44,32 +42,42 @@ margin_bottom = 578.942
 disabled = true
 text = "Join Game"
 
-[node name="Control" type="Control" parent="."]
-margin_left = -4.0
-margin_top = 313.0
-margin_right = 1019.0
-margin_bottom = 357.0
-
-[node name="Nickname" type="LineEdit" parent="Control"]
-margin_left = 466.154
-margin_top = 13.3372
-margin_right = 655.154
-margin_bottom = 37.3372
-
-[node name="Label2" type="Label" parent="Control"]
-margin_left = 351.42
-margin_top = 16.3406
-margin_right = 423.42
-margin_bottom = 30.3406
-text = "Your name:"
-
-[node name="Start" type="Button" parent="."]
+[node name="start" type="Button" parent="."]
 visible = false
 margin_left = 390.0
 margin_top = 520.0
 margin_right = 650.0
 margin_bottom = 568.0
 text = "Start Game!"
-[connection signal="pressed" from="Host" to="." method="_on_Host_pressed"]
-[connection signal="pressed" from="Join" to="." method="_on_Join_pressed"]
-[connection signal="text_changed" from="Control/Nickname" to="." method="_on_Nickname_text_changed"]
+
+[node name="nickname" type="LineEdit" parent="."]
+margin_left = 450.0
+margin_top = 326.337
+margin_right = 639.0
+margin_bottom = 350.337
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="nickname_label" type="Label" parent="."]
+margin_left = 347.42
+margin_top = 329.341
+margin_right = 419.42
+margin_bottom = 343.341
+text = "Your name:"
+
+[node name="server_label" type="Label" parent="."]
+margin_left = 350.0
+margin_top = 390.0
+margin_right = 407.0
+margin_bottom = 404.0
+text = "Server IP"
+
+[node name="server" type="LineEdit" parent="."]
+margin_left = 450.0
+margin_top = 390.0
+margin_right = 640.0
+margin_bottom = 414.0
+[connection signal="pressed" from="host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="join" to="." method="_on_join_pressed"]
+[connection signal="text_changed" from="nickname" to="." method="_on_nickname_text_changed"]
+[connection signal="text_changed" from="server" to="." method="_on_server_text_changed"]

@@ -1,48 +1,44 @@
-extends Node2D
-
-var player_info = {}
+extends Control
 
 func _ready():
-	get_tree().connect('network_peer_connected', self, '_player_connected')
-	get_tree().connect('network_peer_disconnected', self, '_player_disconnected')
-	get_tree().connect('connected_to_server', self, '_connected_ok')
-	get_tree().connect('connection_failed', self, '_connected_fail')
-	get_tree().connect('server_disconnected', self, '_server_disconnected')
+	gamestate.connect('connection_succeeded', self, '_on_connection_success')
+	gamestate.connect('connection_failed', self, '_on_connection_failed')
+	gamestate.connect('server_created', self, '_on_server_created')
+	gamestate.connect('player_list_changed', self, '_on_player_list_changed')
 	
-func _on_Host_pressed():
-	$Join.disabled = true
-	Network.host_game()
+func _on_connection_success():
+	pass
 	
-func _on_Join_pressed():
-	Network.join_game()
-	
-func _on_Nickname_text_changed(new_text):
-	if $Control/Nickname.text == '':
-		$Join.disabled = true
-		$Host.disabled = true
+func _on_connection_failed():
+	pass
+
+func _on_server_created():
+	get_node('host').disabled = true
+	get_node('status').text = "Server started. Waiting for players to join..."
+
+func _on_nickname_text_changed(new_text):
+	if new_text == '':
+		get_node('host').disabled = true
 	else:
-		$Join.disabled = false
-		$Host.disabled = false
-		
-func _player_connected(id):
-	var info = {nickname=$Control/Nickname.text}
-	rpc_id(id, "register_player", info)
+		get_node('host').disabled = false
+
+func _on_host_pressed():
+	var nickname = get_node('nickname').text
+	gamestate.host_game(nickname)
 	
-func _player_disconnected(id):
-	player_info.erase(id)
-	
-func _connected_ok():
-	print("something")
-	
-func _connected_fail():
-	pass
-	
-func _server_disconnected():
-	pass
-	
-remote func register_player(info):
-	var id = get_tree().get_rpc_sender_id()
-	player_info[id] = info
-	print("Registered player " + info.nickname)
-#func _update_player_count():
-#	print("players: " + str(len(Network.players)))
+func _on_join_pressed():
+	var nickname = get_node('nickname').text
+	var server = get_node('server').text
+	gamestate.join_game(server, nickname)
+
+func _on_server_text_changed(new_text):
+	if new_text == '':
+		get_node('join').disabled = true
+	else:
+		get_node('join').disabled = false
+
+func _on_player_list_changed():
+	var player_count = len(gamestate.players)
+	get_node('status').text = str(player_count) + " players connected."
+
+
