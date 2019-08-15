@@ -42,6 +42,16 @@ remote func register_player(nickname):
 func unregister_player(id):
 	players.erase(id)
 	
+func start_game():
+	for p in players:
+		rpc_id(p, "prepare_game")
+	prepare_game()
+	
+remote func prepare_game():
+	var map = load("res://maps/map01.tscn").instance()
+	get_tree().get_root().add_child(map)
+	get_tree().get_root().get_node("lobby").hide()
+	
 func _player_connected(id):
 	print("player connected: " + str(id))
 	rpc_id(id, "register_player", nickname)

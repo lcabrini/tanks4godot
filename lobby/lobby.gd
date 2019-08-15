@@ -43,4 +43,5 @@ func _on_player_list_changed():
 	if get_tree().is_network_server():
 		get_node("start").show()
 
-
+func _on_start_pressed():
+	gamestate.start_game()

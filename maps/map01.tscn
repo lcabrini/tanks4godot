@@ -3,11 +3,10 @@
 [ext_resource path="res://maps/map.gd" type="Script" id=1]
 [ext_resource path="res://terrain/terrain_tiles.tres" type="TileSet" id=2]
 
-
-[node name="Map01" type="Node2D"]
+[node name="map01" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Ground" type="TileMap" parent="."]
+[node name="ground" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 128, 128 )
 format = 1

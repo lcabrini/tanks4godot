@@ -1,4 +1,4 @@
-extends "res://tanks/Tank.gd"
+extends "res://tanks/tank.gd"
 
 enum MovementKey {FORWARD, BACKWARD, STOPPED}
 enum RotationKey {LEFT, RIGHT, NONE}
@@ -40,7 +40,8 @@ func _physics_process(delta):
 		position = slave_position
 	
 	if get_tree().is_network_server():
-		Network.update_position(int(name), position)
+		pass
+		#network.update_position(int(name), position)
 		
 func _move(movement_key, rotation_key, turret_direction, delta):
 	$Turret.look_at(turret_direction)
