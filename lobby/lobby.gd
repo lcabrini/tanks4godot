@@ -40,5 +40,6 @@ func _on_server_text_changed(new_text):
 func _on_player_list_changed():
 	var player_count = len(gamestate.players)
 	get_node('status').text = str(player_count) + " players connected."
+	get_node("start").show()
 
 
