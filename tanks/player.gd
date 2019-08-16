@@ -22,6 +22,7 @@ func _physics_process(delta):
 	var rot_dir = 0
 		
 	if is_network_master():
+		print("is master")
 		get_node('turret').look_at(get_global_mouse_position())
 		if Input.is_action_pressed("turn_left"):
 			print("Turn left")

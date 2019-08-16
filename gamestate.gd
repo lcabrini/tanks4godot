@@ -55,6 +55,7 @@ remote func prepare_game():
 	var player_scene = load('res://tanks/player.tscn')
 	var z = 100
 	for id in players:
+		print("in the loop....")
 		var player = player_scene.instance()
 		player.position = Vector2(z, z)
 		z += 100
