@@ -29,3 +29,9 @@ position = Vector2( 48, 0 )
 [node name="player_camera" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 1.4, 1.4 )
+
+[node name="name" type="Label" parent="."]
+margin_left = -42.0
+margin_top = 64.0
+margin_right = 60.0
+margin_bottom = 78.0

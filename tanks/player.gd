@@ -14,6 +14,9 @@ func _ready():
 	
 	if is_network_master():
 		get_node('player_camera').make_current()
+		
+func set_player_name(new_name):
+	get_node('name').text = new_name
 
 func _physics_process(delta):
 	var rot_dir = 0

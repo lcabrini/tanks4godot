@@ -52,6 +52,17 @@ remote func prepare_game():
 	get_tree().get_root().add_child(map)
 	get_tree().get_root().get_node("lobby").hide()
 	
+	var player_scene = load('res://tanks/player.tscn')
+	var z = 100
+	for id in players:
+		var player = player_scene.instance()
+		player.position = Vector2(z, z)
+		z += 100
+		player.set_name(str(id))
+		player.set_network_master(id)
+		player.set_player_name(players[id])
+		map.add_child(player)
+		
 func _player_connected(id):
 	print("player connected: " + str(id))
 	rpc_id(id, "register_player", nickname)
