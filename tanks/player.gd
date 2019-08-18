@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const MOTION_SPEED = 90.0
+const MOTION_SPEED = 200.0
 const ROTATION_SPEED = 5
 
 var velocity = Vector2()
