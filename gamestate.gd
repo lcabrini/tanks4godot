@@ -34,8 +34,9 @@ func join_game(ip, new_nickname):
 	get_tree().set_network_peer(host) 
 	
 remote func register_player(nickname):
-	print("in register player")
+	print("in register player, nickname: " + nickname)
 	var id = get_tree().get_rpc_sender_id()
+	print("id is " + str(id))
 	players[id] = nickname
 	emit_signal("player_list_changed")
 	
@@ -43,25 +44,35 @@ func unregister_player(id):
 	players.erase(id)
 	
 func start_game():
+	assert(get_tree().is_network_server())
+	var spawn_points = {}
+	spawn_points[1] = 0
+	var spawn_points_idx = 1
 	for p in players:
-		rpc_id(p, "prepare_game")
-	prepare_game()
+		spawn_points[p] = spawn_points_idx
+		spawn_points_idx += 1
+	for p in players:
+		rpc_id(p, "prepare_game", spawn_points)
+	prepare_game(spawn_points)
 	
-remote func prepare_game():
+remote func prepare_game(spawn_points):
 	var map = load("res://maps/map01.tscn").instance()
 	get_tree().get_root().add_child(map)
 	get_tree().get_root().get_node("lobby").hide()
 	
 	var player_scene = load('res://tanks/player.tscn')
-	var z = 100
-	for id in players:
-		print("in the loop....")
+	
+	for p_id in spawn_points:
+		var spawn_pos = map.get_node("spawn_points/" + str(spawn_points[p_id])).position
 		var player = player_scene.instance()
-		player.position = Vector2(z, z)
-		z += 100
-		player.set_name(str(id))
-		player.set_network_master(id)
-		player.set_player_name(players[id])
+		player.position = spawn_pos
+		player.set_name(str(p_id))
+		player.set_network_master(p_id)
+		
+		if p_id == get_tree().get_network_unique_id():
+			player.set_player_name(nickname)
+		else:
+			player.set_player_name(players[p_id])
 		map.add_child(player)
 		
 func _player_connected(id):
