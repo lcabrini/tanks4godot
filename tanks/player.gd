@@ -41,7 +41,7 @@ func _physics_process(delta):
 		if Input.is_action_pressed('forward'):
 			print("forward")
 			velocity = Vector2(MOTION_SPEED, 0).rotated(rotation)
-		if Input.is_action_pressed('backward'):
+		if Input.is_action_pressed('reverse'):
 			print("backward")
 			velocity = Vector2(-MOTION_SPEED/2, 0).rotated(rotation)
 		move_and_slide(velocity)
