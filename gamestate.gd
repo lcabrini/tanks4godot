@@ -57,6 +57,8 @@ func start_game():
 	
 remote func prepare_game(spawn_points):
 	var map = load("res://maps/map01.tscn").instance()
+	var map_limits = map.get_node('ground').get_used_rect()
+	var map_cellsize = map.get_node('ground').cell_size
 	get_tree().get_root().add_child(map)
 	get_tree().get_root().get_node("lobby").hide()
 	
@@ -68,6 +70,11 @@ remote func prepare_game(spawn_points):
 		player.position = spawn_pos
 		player.set_name(str(p_id))
 		player.set_network_master(p_id)
+		var cam = player.get_node('player_camera')
+		cam.limit_left = map_limits.position.x * map_cellsize.x
+		cam.limit_right = map_limits.end.x * map_cellsize.x
+		cam.limit_top = map_limits.position.y * map_cellsize.y
+		cam.limit_bottom = map_limits.end.y * map_cellsize.y
 		
 		if p_id == get_tree().get_network_unique_id():
 			player.set_player_name(nickname)

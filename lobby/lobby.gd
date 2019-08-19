@@ -15,7 +15,7 @@ func _on_connection_failed():
 func _on_server_created():
 	get_node('host').disabled = true
 	get_node('status').text = "Server started. Waiting for players to join..."
-
+	
 func _on_nickname_text_changed(new_text):
 	if new_text == '':
 		get_node('host').disabled = true

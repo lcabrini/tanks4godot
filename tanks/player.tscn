@@ -33,3 +33,4 @@ margin_right = 60.0
 margin_bottom = 78.0
 
 [node name="player_camera" type="Camera2D" parent="."]
+zoom = Vector2( 1.4, 1.4 )
