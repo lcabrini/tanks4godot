@@ -19,3 +19,12 @@ position = Vector2( 140, 90 )
 
 [node name="1" type="Position2D" parent="spawn_points"]
 position = Vector2( 470, 310 )
+
+[node name="2" type="Position2D" parent="spawn_points"]
+position = Vector2( 1000, 1000 )
+
+[node name="3" type="Position2D" parent="spawn_points"]
+position = Vector2( 960, 380 )
+
+[node name="4" type="Position2D" parent="spawn_points"]
+position = Vector2( 200, 800 )

@@ -64,9 +64,12 @@ remote func prepare_game(spawn_points):
 	
 	var player_scene = load('res://tanks/player.tscn')
 	
+	var idx = 0
 	for p_id in spawn_points:
 		var spawn_pos = map.get_node("spawn_points/" + str(spawn_points[p_id])).position
 		var player = player_scene.instance()
+		player.get_node('body').texture = load("res://tanks/tank_" + str(idx) + ".png")
+		player.get_node('turret').texture = load("res://tanks/turret_" + str(idx) + ".png")
 		player.position = spawn_pos
 		player.set_name(str(p_id))
 		player.set_network_master(p_id)
@@ -81,6 +84,7 @@ remote func prepare_game(spawn_points):
 		else:
 			player.set_player_name(players[p_id])
 		map.add_child(player)
+		idx += 1
 		
 func _player_connected(id):
 	print("player connected: " + str(id))
