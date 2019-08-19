@@ -5,13 +5,13 @@ const ROTATION_SPEED = 5
 
 var velocity = Vector2()
 
-puppet var puppet_pos = Vector2()
-#puppet var puppet_velocity = Vector2()
+#puppet var puppet_pos = Vector2()
+puppet var puppet_velocity = Vector2()
 puppet var puppet_rotation = 0
 puppet var puppet_turret_rotation = 0
 
 func _ready():
-	puppet_pos = position
+	#puppet_pos = position
 	puppet_rotation = rotation
 	puppet_turret_rotation = 0
 	
@@ -44,14 +44,16 @@ func _physics_process(delta):
 		if Input.is_action_pressed('backward'):
 			print("backward")
 			velocity = Vector2(-MOTION_SPEED/2, 0).rotated(rotation)
-		#rset('puppet_velocity', velocity)
+		move_and_slide(velocity)
+		rset('puppet_velocity', velocity)
 		rset('puppet_rotation', rotation)
-		rset('puppet_position', position)
+		#rset('puppet_position', position)
 		rset('puppet_turret_rotation', get_node('turret').rotation)
 	else:
-		position = puppet_pos
-		#velocity = puppet_velocity
+		#position = puppet_pos
+		velocity = puppet_velocity
 		rotation = puppet_rotation
 		get_node('turret').rotation = puppet_turret_rotation
+		move_and_slide(velocity)
 		#get_node('turret').look_at(puppet_turret_direction)
 		#print("_physics_process: network client")
