@@ -16,7 +16,7 @@ func _ready():
 	puppet_turret_rotation = 0
 	
 	if is_network_master():
-		#get_node('player_camera').make_current()
+		get_node('player_camera').make_current()
 		print("_ready: network master")
 	else:
 		print("_ready: network client")
