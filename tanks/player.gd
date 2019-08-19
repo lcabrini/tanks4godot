@@ -8,10 +8,12 @@ var velocity = Vector2()
 puppet var puppet_pos = Vector2()
 #puppet var puppet_velocity = Vector2()
 puppet var puppet_rotation = 0
+puppet var puppet_turret_rotation = 0
 
 func _ready():
 	puppet_pos = position
 	puppet_rotation = rotation
+	puppet_turret_rotation = 0
 	
 	if is_network_master():
 		#get_node('player_camera').make_current()
@@ -45,8 +47,11 @@ func _physics_process(delta):
 		#rset('puppet_velocity', velocity)
 		rset('puppet_rotation', rotation)
 		rset('puppet_position', position)
+		rset('puppet_turret_rotation', get_node('turret').rotation)
 	else:
 		position = puppet_pos
 		#velocity = puppet_velocity
 		rotation = puppet_rotation
+		get_node('turret').rotation = puppet_turret_rotation
+		#get_node('turret').look_at(puppet_turret_direction)
 		#print("_physics_process: network client")
