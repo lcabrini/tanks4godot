@@ -19,8 +19,13 @@ func _on_server_created():
 func _on_nickname_text_changed(new_text):
 	if new_text == '':
 		get_node('host').disabled = true
+		get_node('join').disabled = true
 	else:
 		get_node('host').disabled = false
+		if get_node('server').text != '':
+			get_node('join').disabled = false
+		else:
+			get_node('join').disabled = true
 
 func _on_host_pressed():
 	var nickname = get_node('nickname').text
