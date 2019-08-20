@@ -4,6 +4,7 @@ func _ready():
 	gamestate.connect('connection_succeeded', self, '_on_connection_success')
 	gamestate.connect('connection_failed', self, '_on_connection_failed')
 	gamestate.connect('server_created', self, '_on_server_created')
+	gamestate.connect('joined_game', self, '_on_joined_game')
 	gamestate.connect('player_list_changed', self, '_on_player_list_changed')
 	
 func _on_connection_success():
@@ -15,6 +16,10 @@ func _on_connection_failed():
 func _on_server_created():
 	get_node('host').disabled = true
 	get_node('status').text = "Server started. Waiting for players to join..."
+	
+func _on_joined_game():
+	get_node('join').disabled = true
+	get_node('host').disabled = true
 	
 func _on_nickname_text_changed(new_text):
 	if new_text == '':
