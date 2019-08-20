@@ -14,6 +14,7 @@ func _ready():
 	#puppet_pos = position
 	puppet_rotation = rotation
 	puppet_turret_rotation = 0
+	$name.get_global_transform()
 	
 	if is_network_master():
 		get_node('player_camera').make_current()
@@ -22,7 +23,8 @@ func _ready():
 		print("_ready: network client")
 		
 func set_player_name(new_name):
-	get_node('name').text = new_name
+	#get_node('name').text = new_name
+	get_node('details').get_node('name').text = new_name
 
 func _physics_process(delta):
 	var rot_dir = 0

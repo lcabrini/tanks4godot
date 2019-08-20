@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://tanks/tank_details.gd" type="Script" id=1]
+
+[node name="details" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="name" type="Label" parent="."]
+margin_left = -60.0
+margin_top = 60.0
+margin_right = 60.0
+margin_bottom = 74.0
+align = 1
+valign = 1
