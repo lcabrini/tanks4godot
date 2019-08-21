@@ -87,7 +87,7 @@ reverse={
 
 2d_render/layer_1="environment"
 2d_render/layer_2="players"
-2d_render/layer_3="bullets"
+2d_render/layer_3="missiles"
 
 [rendering]
 
