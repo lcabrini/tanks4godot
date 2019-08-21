@@ -83,6 +83,12 @@ reverse={
  ]
 }
 
+[layer_names]
+
+2d_render/layer_1="environment"
+2d_render/layer_2="players"
+2d_render/layer_3="bullets"
+
 [rendering]
 
 quality/2d/use_pixel_snap=true
