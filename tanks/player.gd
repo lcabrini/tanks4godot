@@ -5,6 +5,8 @@ const ROTATION_SPEED = 1
 
 var velocity = Vector2()
 
+signal shoot()
+
 #puppet var puppet_pos = Vector2()
 puppet var puppet_velocity = Vector2()
 puppet var puppet_rotation = 0
@@ -26,6 +28,12 @@ func set_player_name(new_name):
 	#get_node('name').text = new_name
 	get_node('details').get_node('name').text = new_name
 
+sync func fire_missile(pos, dir, target):
+	print("firing missile!")
+	var missile = preload('res://missiles/missile.tscn').instance()
+	missile.start(pos, dir, target)
+	get_node('..').add_child(missile)
+	
 func _physics_process(delta):
 	var rot_dir = 0
 		
@@ -46,6 +54,11 @@ func _physics_process(delta):
 		if Input.is_action_pressed('reverse'):
 			print("backward")
 			velocity = Vector2(-MOTION_SPEED/2, 0).rotated(rotation)
+		if Input.is_action_just_pressed('Click'):
+			var dir = Vector2(1, 0).rotated(get_node('turret/muzzle').global_rotation)
+			var pos = get_node('turret/muzzle').global_position
+			var target = get_global_mouse_position()
+			rpc('fire_missile', pos, dir, target)
 		move_and_slide(velocity)
 		rset('puppet_velocity', velocity)
 		rset('puppet_rotation', rotation)
