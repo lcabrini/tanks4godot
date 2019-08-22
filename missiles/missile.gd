@@ -10,8 +10,12 @@ func start(_position, _direction, _target):
 	target = _target
 	velocity = _direction * speed
 	
-func explode():
+sync func explode():
 	queue_free()
+	print("exploding")
+	var explosion = preload("res://explosion/explosion.tscn").instance()
+	explosion.start(position)
+	get_node('..').add_child(explosion)
 	
 func _process(delta):
 	print("missile is flying...")
