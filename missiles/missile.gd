@@ -12,4 +12,9 @@ func start(_position, _direction, _target):
 	
 func _process(delta):
 	print("missile is flying...")
-	position += velocity * delta
+	print("target: " + str(target))
+	print("position: " + str(position))
+	if position.distance_to(target) <= 1:
+		print("missile done")
+	else:
+		position += velocity * delta
