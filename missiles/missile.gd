@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = 100
+var speed = 300
 var target = Vector2()
 var velocity = Vector2()
 
@@ -21,7 +21,7 @@ func _process(delta):
 	print("missile is flying...")
 	print("target: " + str(target))
 	print("position: " + str(position))
-	if position.distance_to(target) <= 1:
+	if position.distance_to(target) <= 10:
 		explode()
 	else:
 		position += velocity * delta
