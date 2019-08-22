@@ -10,11 +10,14 @@ func start(_position, _direction, _target):
 	target = _target
 	velocity = _direction * speed
 	
+func explode():
+	queue_free()
+	
 func _process(delta):
 	print("missile is flying...")
 	print("target: " + str(target))
 	print("position: " + str(position))
 	if position.distance_to(target) <= 1:
-		print("missile done")
+		explode()
 	else:
 		position += velocity * delta
