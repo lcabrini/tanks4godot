@@ -18,13 +18,13 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 position = Vector2( 140, 90 )
 
 [node name="1" type="Position2D" parent="spawn_points"]
-position = Vector2( 470, 310 )
+position = Vector2( 5490.08, 556.312 )
 
 [node name="2" type="Position2D" parent="spawn_points"]
-position = Vector2( 1000, 1000 )
+position = Vector2( 3897.1, 2724.19 )
 
 [node name="3" type="Position2D" parent="spawn_points"]
-position = Vector2( 960, 380 )
+position = Vector2( 7645.62, 3148.08 )
 
 [node name="4" type="Position2D" parent="spawn_points"]
-position = Vector2( 200, 800 )
+position = Vector2( 458.041, 4694.08 )
