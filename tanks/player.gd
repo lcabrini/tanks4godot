@@ -29,7 +29,7 @@ func set_player_name(new_name):
 	get_node('details').get_node('name').text = new_name
 
 sync func fire_missile(pos, dir, target):
-	print("firing missile!")
+	#print("firing missile!")
 	var missile = preload('res://missiles/missile.tscn').instance()
 	missile.start(pos, dir, target)
 	get_node('..').add_child(missile)
@@ -41,18 +41,18 @@ func _physics_process(delta):
 		#print("control is master")
 		get_node('turret').look_at(get_global_mouse_position())
 		if Input.is_action_pressed("turn_right"):
-			print("Turn right")
+			#print("Turn right")
 			rot_dir += 1
 		if Input.is_action_pressed('turn_left'):
-			print("turn left")
+			#print("turn left")
 			rot_dir -= 1
 		rotation += ROTATION_SPEED * rot_dir * delta
 		velocity = Vector2()
 		if Input.is_action_pressed('forward'):
-			print("forward")
+			#print("forward")
 			velocity = Vector2(MOTION_SPEED, 0).rotated(rotation)
 		if Input.is_action_pressed('reverse'):
-			print("backward")
+			#print("backward")
 			velocity = Vector2(-MOTION_SPEED/2, 0).rotated(rotation)
 		if Input.is_action_just_pressed('Click'):
 			var dir = Vector2(1, 0).rotated(get_node('turret/muzzle').global_rotation)

@@ -16,7 +16,7 @@ func start(_position):
 #		queue_free()
 
 func _on_explosion_finished():
-	print("done exploding")
+	#print("done exploding")
 	get_node("animation").playing = false
 	queue_free()
 

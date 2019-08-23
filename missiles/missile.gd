@@ -12,15 +12,15 @@ func start(_position, _direction, _target):
 	
 sync func explode():
 	queue_free()
-	print("exploding")
+	#print("exploding")
 	var explosion = preload("res://explosion/explosion.tscn").instance()
 	explosion.start(position)
 	get_node('..').add_child(explosion)
 	
 func _process(delta):
-	print("missile is flying...")
-	print("target: " + str(target))
-	print("position: " + str(position))
+	#print("missile is flying...")
+	#print("target: " + str(target))
+	#print("position: " + str(position))
 	if position.distance_to(target) <= 10:
 		explode()
 	else:
