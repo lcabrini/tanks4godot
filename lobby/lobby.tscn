@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://lobby/lobby.gd" type="Script" id=1]
 [ext_resource path="res://assets/zorque.regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://lobby/title.ogg" type="AudioStream" id=3]
+[ext_resource path="res://lobby/bg.jpg" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
@@ -77,6 +79,15 @@ margin_left = 450.0
 margin_top = 390.0
 margin_right = 640.0
 margin_bottom = 414.0
+
+[node name="player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 510, 300 )
+scale = Vector2( 1.275, 1.05448 )
+z_index = -4
+texture = ExtResource( 4 )
 [connection signal="pressed" from="host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]

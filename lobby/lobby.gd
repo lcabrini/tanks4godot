@@ -10,6 +10,7 @@ func _ready():
 	gamestate.connect('player_list_changed', self, '_on_player_list_changed')
 	joined = false
 	get_node('nickname').grab_focus()
+	get_node('player').play()
 	
 func _on_connection_success():
 	pass
