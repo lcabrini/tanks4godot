@@ -62,6 +62,7 @@ remote func prepare_game(spawn_points):
 	var map_limits = map.get_node('ground').get_used_rect()
 	var map_cellsize = map.get_node('ground').cell_size
 	get_tree().get_root().add_child(map)
+	get_tree().get_root().get_node('lobby').get_node('player').stop()
 	get_tree().get_root().get_node("lobby").hide()
 	
 	var player_scene = load('res://tanks/player.tscn')
