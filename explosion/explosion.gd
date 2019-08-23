@@ -22,9 +22,8 @@ func _on_explosion_finished():
 
 func _on_explosion_body_entered(body):
 	var distance = body.position.distance_to(position)
-	print("damage vector: " + str(distance))
+	var damage = 200 - distance
+	if body.has_method('get_hit'):
+		body.get_hit(damage)
+	#print("damage vector: " + str(distance))
 
-
-func _on_explode_zone_body_entered(body):
-	var distance = body.position.distance_to(position)
-	print("the damage vector: " + str(distance))

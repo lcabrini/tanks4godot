@@ -2,8 +2,10 @@ extends KinematicBody2D
 
 const MOTION_SPEED = 200.0
 const ROTATION_SPEED = 1
+const MAX_HEALTH = 1000
 
 var velocity = Vector2()
+var health = MAX_HEALTH
 
 signal shoot()
 
@@ -33,6 +35,12 @@ sync func fire_missile(pos, dir, target):
 	var missile = preload('res://missiles/missile.tscn').instance()
 	missile.start(pos, dir, target)
 	get_node('..').add_child(missile)
+	
+func get_hit(damage):
+	health -= damage
+	print("Remaining health: " + str(health))
+	if health < 1:
+		queue_free()
 	
 func _physics_process(delta):
 	var rot_dir = 0
