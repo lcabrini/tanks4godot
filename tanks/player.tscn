@@ -1,12 +1,57 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tanks/player.gd" type="Script" id=1]
 [ext_resource path="res://tanks/tank_1.png" type="Texture" id=2]
 [ext_resource path="res://tanks/turret_1.png" type="Texture" id=3]
-[ext_resource path="res://tanks/tank_details.tscn" type="PackedScene" id=4]
+[ext_resource path="res://tanks/flame.png" type="Texture" id=4]
+[ext_resource path="res://tanks/tank_details.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 35.6023, 37.5168 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "init"
+tracks/0/type = "value"
+tracks/0/path = NodePath("turret/flash:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "muzzle_flash"
+length = 0.15
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("turret/flash:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.12, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("turret/flash:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0298347, 0.08 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
 
 [node name="player" type="KinematicBody2D"]
 collision_layer = 2
@@ -28,6 +73,13 @@ offset = Vector2( 20, 0 )
 [node name="muzzle" type="Position2D" parent="turret"]
 position = Vector2( 48, 0 )
 
+[node name="flash" type="Sprite" parent="turret"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 55, 0 )
+z_index = 1
+texture = ExtResource( 4 )
+offset = Vector2( 24, 0 )
+
 [node name="gun_timer" type="Timer" parent="."]
 
 [node name="name" type="Label" parent="."]
@@ -39,5 +91,10 @@ margin_bottom = 78.0
 [node name="player_camera" type="Camera2D" parent="."]
 zoom = Vector2( 1.4, 1.4 )
 
-[node name="details" parent="." instance=ExtResource( 4 )]
+[node name="details" parent="." instance=ExtResource( 5 )]
 position = Vector2( -0.191658, -0.111221 )
+
+[node name="animation" type="AnimationPlayer" parent="."]
+autoplay = "init"
+anims/init = SubResource( 2 )
+anims/muzzle_flash = SubResource( 3 )

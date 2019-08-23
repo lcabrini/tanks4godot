@@ -35,6 +35,7 @@ sync func fire_missile(pos, dir, target):
 	var missile = preload('res://missiles/missile.tscn').instance()
 	missile.start(pos, dir, target)
 	get_node('..').add_child(missile)
+	get_node('animation').play('muzzle_flash')
 	
 func get_hit(damage):
 	health -= damage
