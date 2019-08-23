@@ -16,7 +16,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 201.404
+radius = 90.0
 
 [node name="explosion" type="Area2D"]
 collision_layer = 4
