@@ -76,7 +76,7 @@ remote func prepare_game(spawn_points):
 		player.position = spawn_pos
 		player.set_name(str(p_id))
 		player.set_network_master(p_id)
-		player.connect('health_changed', map.get_node('hud'), 'update_healthbar')
+		
 		
 		var cam = player.get_node('player_camera')
 		cam.limit_left = map_limits.position.x * map_cellsize.x
@@ -86,6 +86,7 @@ remote func prepare_game(spawn_points):
 		
 		if p_id == get_tree().get_network_unique_id():
 			player.set_player_name(nickname)
+			player.connect('health_changed', map.get_node('hud'), 'update_healthbar')
 		else:
 			player.set_player_name(players[p_id])
 		map.add_child(player)
