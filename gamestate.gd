@@ -76,6 +76,8 @@ remote func prepare_game(spawn_points):
 		player.position = spawn_pos
 		player.set_name(str(p_id))
 		player.set_network_master(p_id)
+		player.connect('health_changed', map.get_node('hud'), 'update_healthbar')
+		
 		var cam = player.get_node('player_camera')
 		cam.limit_left = map_limits.position.x * map_cellsize.x
 		cam.limit_right = map_limits.end.x * map_cellsize.x

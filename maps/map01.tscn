@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://maps/map.gd" type="Script" id=1]
 [ext_resource path="res://terrain/terrain_tiles.tres" type="TileSet" id=2]
+[ext_resource path="res://hud/hud.tscn" type="PackedScene" id=3]
 
 [node name="map01" type="Node2D"]
 script = ExtResource( 1 )
@@ -28,3 +29,5 @@ position = Vector2( 7645.62, 3148.08 )
 
 [node name="4" type="Position2D" parent="spawn_points"]
 position = Vector2( 458.041, 4694.08 )
+
+[node name="hud" parent="." instance=ExtResource( 3 )]
