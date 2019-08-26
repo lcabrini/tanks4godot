@@ -39,12 +39,3 @@ func _update(_type):
 	var rect = RectangleShape2D.new()
 	rect.extents = $Sprite.region_rect.size / 2
 	$CollisionShape2D.shape = rect
-	
-	
-	
-	
-	
-	
-	
-	
-	
