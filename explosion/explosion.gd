@@ -6,6 +6,7 @@ func start(_position):
 	position = _position
 	#get_node('animation').connect("finished", self, "on_explosion_done")
 	get_node('animation').playing = true
+	get_node('sound').play()
 	#started = true
 	
 	
