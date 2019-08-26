@@ -84,8 +84,8 @@ margin_bottom = 414.0
 stream = ExtResource( 3 )
 
 [node name="background" type="Sprite" parent="."]
-position = Vector2( 510, 300 )
-scale = Vector2( 1.275, 1.05448 )
+position = Vector2( 513.768, 302.261 )
+scale = Vector2( 1.00268, 1.00172 )
 z_index = -4
 texture = ExtResource( 4 )
 [connection signal="pressed" from="host" to="." method="_on_host_pressed"]

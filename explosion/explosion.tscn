@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://explosion/explosion.gd" type="Script" id=1]
 [ext_resource path="res://explosion/explosion1.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://explosion/explosion3.png" type="Texture" id=4]
 [ext_resource path="res://explosion/explosion4.png" type="Texture" id=5]
 [ext_resource path="res://explosion/explosion5.png" type="Texture" id=6]
+[ext_resource path="res://explosion/blast.wav" type="AudioStream" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -29,5 +30,8 @@ animation = "explosion"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[node name="sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
 [connection signal="body_entered" from="." to="." method="_on_explosion_body_entered"]
 [connection signal="animation_finished" from="animation" to="." method="_on_explosion_finished"]

@@ -3,6 +3,8 @@
 [ext_resource path="res://maps/map.gd" type="Script" id=1]
 [ext_resource path="res://terrain/terrain_tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://obstacles/obstacle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://hud/hud.tscn" type="PackedScene" id=4]
+
 
 [node name="map01" type="Node2D"]
 script = ExtResource( 1 )
@@ -486,3 +488,6 @@ type = 6
 position = Vector2( 4383.92, 3534.89 )
 rotation = 5.03911
 type = 6
+
+[node name="hud" parent="." instance=ExtResource( 4 )]
+

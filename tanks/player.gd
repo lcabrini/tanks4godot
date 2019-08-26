@@ -8,6 +8,7 @@ var velocity = Vector2()
 var health = MAX_HEALTH
 
 signal shoot()
+signal health_changed(new_health)
 
 #puppet var puppet_pos = Vector2()
 puppet var puppet_velocity = Vector2()
@@ -19,6 +20,8 @@ func _ready():
 	puppet_rotation = rotation
 	puppet_turret_rotation = 0
 	$name.get_global_transform()
+	health = MAX_HEALTH
+	emit_signal('health_changed', health * 100 / MAX_HEALTH)
 	
 	if is_network_master():
 		get_node('player_camera').make_current()
@@ -39,7 +42,8 @@ sync func fire_missile(pos, dir, target):
 	
 func get_hit(damage):
 	health -= damage
-	print("Remaining health: " + str(health))
+	#print("Remaining health: " + str(health))
+	emit_signal("health_changed", health * 100 / MAX_HEALTH)
 	if health < 1:
 		queue_free()
 	
