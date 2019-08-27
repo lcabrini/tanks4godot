@@ -98,3 +98,4 @@ position = Vector2( -0.191658, -0.111221 )
 autoplay = "init"
 anims/init = SubResource( 2 )
 anims/muzzle_flash = SubResource( 3 )
+[connection signal="timeout" from="gun_timer" to="." method="_on_gun_timer_timeout"]

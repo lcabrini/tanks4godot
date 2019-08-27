@@ -9,8 +9,6 @@ func start(_position):
 	get_node('sound').play()
 	#started = true
 	
-	
-	
 #func _process(delta):
 #	var a = get_node('animation')
 #	if started and not a.playing:

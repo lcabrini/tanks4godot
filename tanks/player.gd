@@ -6,6 +6,7 @@ const MAX_HEALTH = 1000
 
 var velocity = Vector2()
 var health = MAX_HEALTH
+var can_shoot = true
 
 signal shoot()
 signal health_changed(new_health)
@@ -22,6 +23,8 @@ func _ready():
 	$name.get_global_transform()
 	health = MAX_HEALTH
 	emit_signal('health_changed', health * 100 / MAX_HEALTH)
+	get_node('gun_timer').wait_time = 0.6
+	can_shoot = true
 	
 	if is_network_master():
 		get_node('player_camera').make_current()
@@ -68,10 +71,13 @@ func _physics_process(delta):
 			#print("backward")
 			velocity = Vector2(-MOTION_SPEED/2, 0).rotated(rotation)
 		if Input.is_action_just_pressed('Click'):
-			var dir = Vector2(1, 0).rotated(get_node('turret/muzzle').global_rotation)
-			var pos = get_node('turret/muzzle').global_position
-			var target = get_global_mouse_position()
-			rpc('fire_missile', pos, dir, target)
+			if can_shoot:
+				can_shoot = false
+				get_node('gun_timer').start()
+				var dir = Vector2(1, 0).rotated(get_node('turret/muzzle').global_rotation)
+				var pos = get_node('turret/muzzle').global_position
+				var target = get_global_mouse_position()
+				rpc('fire_missile', pos, dir, target)
 		move_and_slide(velocity)
 		rset('puppet_velocity', velocity)
 		rset('puppet_rotation', rotation)
@@ -85,3 +91,6 @@ func _physics_process(delta):
 		move_and_slide(velocity)
 		#get_node('turret').look_at(puppet_turret_direction)
 		#print("_physics_process: network client")
+
+func _on_gun_timer_timeout():
+	can_shoot = true
