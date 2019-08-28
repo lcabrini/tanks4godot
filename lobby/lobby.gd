@@ -74,7 +74,8 @@ func _update():
 		get_node('host').disabled = true
 		get_node('join').disabled = true
 	else:
-		if get_node('server').text == '' or get_node('nickname').text == '':
+		var ip = get_node('server').text
+		if not ip.is_valid_ip_address() or get_node('nickname').text == '':
 			get_node('join').disabled = true
 		else:
 			get_node('join').disabled = false
