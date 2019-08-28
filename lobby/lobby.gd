@@ -82,5 +82,7 @@ func _update():
 		
 		if get_node('nickname').text == '':
 			get_node('host').disabled = true
+		elif ip != '':
+			get_node('host').disabled = true
 		else:
 			get_node('host').disabled = false
