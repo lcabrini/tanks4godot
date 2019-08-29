@@ -12,16 +12,25 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="hbox" type="HBoxContainer" parent="margin"]
-margin_right = 400.0
-margin_bottom = 53.0
+margin_right = 216.0
+margin_bottom = 40.0
 
 [node name="texture" type="TextureRect" parent="margin/hbox"]
-margin_bottom = 53.0
+margin_bottom = 40.0
 
 [node name="health_bar" type="TextureProgress" parent="margin/hbox"]
 margin_left = 4.0
-margin_right = 400.0
-margin_bottom = 53.0
+margin_right = 204.0
+margin_bottom = 40.0
 value = 100.0
 texture_under = ExtResource( 2 )
 texture_progress = ExtResource( 3 )
+
+[node name="score" type="Label" parent="margin/hbox"]
+margin_left = 208.0
+margin_top = 13.0
+margin_right = 216.0
+margin_bottom = 27.0
+text = "0"
+align = 2
+valign = 1
