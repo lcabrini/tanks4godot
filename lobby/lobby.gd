@@ -19,28 +19,16 @@ func _on_connection_failed():
 	pass
 
 func _on_server_created():
-	#get_node('host').disabled = true
 	joined = true
 	_update()
 	get_node('status').text = "Server started. Waiting for players to join..."
 	
 func _on_joined_game():
-	#get_node('join').disabled = true
-	#get_node('host').disabled = true
 	joined = true
 	_update()
 	
 func _on_nickname_text_changed(new_text):
 	_update()
-	#if new_text == '':
-	#	get_node('host').disabled = true
-	#	get_node('join').disabled = true
-	#else:
-	#	get_node('host').disabled = false
-	#	if get_node('server').text != '':
-	#		get_node('join').disabled = false
-	#	else:
-	#		get_node('join').disabled = true
 
 func _on_host_pressed():
 	var nickname = get_node('nickname').text
@@ -53,10 +41,6 @@ func _on_join_pressed():
 
 func _on_server_text_changed(new_text):
 	_update()
-	#if new_text == '':
-	#	get_node('join').disabled = true
-	#else:
-	#	get_node('join').disabled = false
 
 func _on_player_list_changed():
 	var player_count = len(gamestate.players)
