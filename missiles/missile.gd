@@ -14,6 +14,7 @@ func start(_position, _direction, _target):
 sync func explode():
 	queue_free()
 	var explosion = preload("res://explosion/explosion.tscn").instance()
+	explosion.shooter = shooter
 	explosion.start(position)
 	get_node('..').add_child(explosion)
 	

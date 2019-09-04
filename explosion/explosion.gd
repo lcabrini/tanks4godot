@@ -1,5 +1,7 @@
 extends Area2D
 
+var shooter
+
 func start(_position):
 	position = _position
 	get_node('animation').playing = true
