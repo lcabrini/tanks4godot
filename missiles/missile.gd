@@ -3,6 +3,7 @@ extends Area2D
 var speed = 300
 var target = Vector2()
 var velocity = Vector2()
+var shooter
 
 func start(_position, _direction, _target):
 	position = _position

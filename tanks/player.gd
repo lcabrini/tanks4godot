@@ -33,9 +33,10 @@ func _ready():
 func set_player_name(new_name):
 	get_node('details').get_node('name').text = new_name
 
-sync func fire_missile(pos, dir, target):
+sync func fire_missile(pos, dir, target, shooter):
 	var missile = preload('res://missiles/missile.tscn').instance()
 	missile.start(pos, dir, target)
+	missile.shooter = shooter
 	get_node('..').add_child(missile)
 	get_node('animation').play('muzzle_flash')
 	
@@ -67,7 +68,7 @@ func _physics_process(delta):
 				var dir = Vector2(1, 0).rotated(get_node('turret/muzzle').global_rotation)
 				var pos = get_node('turret/muzzle').global_position
 				var target = get_global_mouse_position()
-				rpc('fire_missile', pos, dir, target)
+				rpc('fire_missile', pos, dir, target, get_tree().get_network_unique_id())
 		move_and_slide(velocity)
 		rset('puppet_velocity', velocity)
 		rset('puppet_rotation', rotation)
