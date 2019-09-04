@@ -16,3 +16,5 @@ func _on_explosion_body_entered(body):
 	var damage = 200 - distance
 	if body.has_method('get_hit'):
 		body.get_hit(damage)
+		if get_tree().get_network_unique_id() == shooter:
+			pass # should update the score here
